@@ -1,256 +1,511 @@
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#fff0f6">
-<meta name="description" content="A little romantic memory page made by Damo for Chika.">
-<title>For Chika 💗</title>
-<style>
-:root{--pink:#ff6f9f;--deep:#b92761;--pale:#fff0f6;--ink:#632b45;--line:#f5c4d7}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:Georgia,"Times New Roman",serif;color:var(--ink);background:radial-gradient(circle at top,#fff 0,#fff0f6 42%,#ffe0ec 100%);min-height:100vh;overflow-x:hidden}
-button{font:inherit}
-button:focus-visible,.envelope:focus-visible{outline:3px solid #9c2855;outline-offset:4px}
-.wrap{width:min(920px,92%);margin:auto}
-.hero{min-height:100svh;display:grid;place-items:center;text-align:center;padding:46px 0;position:relative;isolation:isolate}
-.glow{position:absolute;width:260px;height:260px;border-radius:50%;filter:blur(45px);background:#ffc4db;opacity:.55;top:15%;left:-100px;pointer-events:none;z-index:-1}
-.glow.two{top:auto;left:auto;right:-100px;bottom:8%;background:#ffb2cf}
-.eyebrow{font:600 .76rem/1.5 system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#b94b78}
-h1{font-size:clamp(2.7rem,9vw,5.5rem);line-height:1.02;margin:.35em 0;color:#a92e62;font-weight:normal}
-h2{font-size:clamp(1.8rem,5vw,3rem);font-weight:normal;margin:.25em 0 .5em;color:#a92e62}
-p{line-height:1.8}
-.intro{max-width:590px;margin:0 auto 26px;font-size:1.08rem}
-.btn{border:0;border-radius:999px;padding:13px 22px;background:var(--deep);color:white;cursor:pointer;box-shadow:0 8px 24px #c52e682c;transition:transform .2s,box-shadow .2s}
-.btn:hover{transform:translateY(-2px);box-shadow:0 11px 28px #c52e6838}
-.btn.secondary{background:white;color:var(--deep);border:1px solid var(--line);box-shadow:none}
-.envelope-area{height:250px;display:grid;place-items:center;perspective:900px;margin:8px auto 20px}
-.envelope{position:relative;width:min(300px,78vw);height:190px;background:#ff8fb5;border-radius:8px;box-shadow:0 18px 38px #9e28532b;cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent}
-.envelope:before{content:"";position:absolute;inset:0;background:linear-gradient(140deg,#ffb5ce,#ff7fa8);clip-path:polygon(0 0,50% 58%,100% 0);z-index:3;transform-origin:top;transition:transform .7s}
-.envelope:after{content:"";position:absolute;inset:0;background:#f96d9b;clip-path:polygon(0 100%,0 0,50% 55%,100% 0,100% 100%);z-index:2}
-.seal{position:absolute;z-index:4;left:50%;top:54%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:#fff1f6;display:grid;place-items:center;color:#c52e68;font-size:1.5rem;box-shadow:0 3px 12px #a92e6230;transition:opacity .3s}
-.letter-peek{position:absolute;z-index:1;background:#fffafc;left:8%;width:84%;height:145px;top:14px;border-radius:5px;display:grid;place-items:center;padding:12px;text-align:center;font-size:1.05rem;color:#bd4c79;transition:transform .7s}
-.envelope.open:before{transform:rotateX(180deg);z-index:0}
-.envelope.open .letter-peek{transform:translateY(-90px)}
-.envelope.open .seal{opacity:0}
-.hint{font:.9rem/1.6 system-ui,sans-serif;color:#a65a79}
-section{padding:72px 0;text-align:center;scroll-margin-top:18px}
-.paper{max-width:700px;margin:auto;background:#fffafc;border:1px solid #ffd1e1;border-radius:20px;padding:clamp(22px,5vw,44px);box-shadow:0 18px 60px #a92e6210;text-align:left;position:relative}
-.paper:before{content:"♡";position:absolute;right:22px;top:8px;font-size:2rem;color:#f4a0bf;pointer-events:none}
-.paper p{font-size:1.08rem}
-.sign{font-style:italic;color:#b33a6c;font-size:1.25rem;margin-top:25px}
-.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:28px 0;text-align:center}
-.photo{min-width:0;border:1px solid var(--line);border-radius:16px;background:#fff9fc;overflow:hidden;box-shadow:0 8px 24px #a92e6210}
-.photo img{width:100%;height:clamp(170px,32vw,300px);object-fit:cover;display:block;background:#ffe5ef}
-.caption{font:.88rem/1.5 system-ui,sans-serif;color:#a34b70;padding:12px 10px;margin:0;background:#fff8fb}
-.songbox{background:#fff9fc;border:1px solid #ffd1e1;border-radius:18px;padding:22px;max-width:560px;margin:24px auto;box-shadow:0 12px 34px #a92e620c}
-.songbox audio{width:100%;margin-top:12px}
-.final{min-height:70svh;display:grid;place-items:center;background:linear-gradient(180deg,transparent,#ffd8e7);padding:60px 0}
-.big-heart{font-size:clamp(4rem,15vw,8rem);animation:beat 1.3s infinite;line-height:1}
-@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
-.tiny{font:.8rem/1.6 system-ui,sans-serif;color:#ad6b87;margin-top:30px}
-.floating{position:fixed;bottom:-30px;pointer-events:none;z-index:10;animation:floatUp 5s linear forwards;color:#f16c9c}
-@keyframes floatUp{to{transform:translateY(-110vh) rotate(35deg);opacity:0}}
-[hidden]{display:none!important}
-@media(max-width:520px){.gallery{gap:9px}.photo img{height:180px}.caption{font-size:.78rem;padding:10px 7px}section{padding:54px 0}.envelope-area{height:235px}.intro{font-size:1rem}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff0f5">
+  <title>For Chika ❤️ From Damo</title>
+
+  <style>
+    :root {
+      --pink: #ff5c91;
+      --dark-pink: #d93670;
+      --light-pink: #fff0f5;
+      --text: #573342;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #fff5f8, #ffe5ef);
+      line-height: 1.7;
+    }
+
+    header {
+      padding: 15px 12px;
+      text-align: center;
+      background: rgba(255,255,255,.85);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #ffd4e2;
+    }
+
+    header a {
+      color: var(--dark-pink);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+      margin: 0 9px;
+      white-space: nowrap;
+    }
+
+    section {
+      padding: 55px 16px;
+      scroll-margin-top: 65px;
+    }
+
+    .wrap {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .hero {
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at 15% 20%, #ffd4e4 0, transparent 30%),
+        radial-gradient(circle at 85% 80%, #ffc5dc 0, transparent 35%);
+    }
+
+    .eyebrow {
+      color: var(--dark-pink);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: clamp(42px, 10vw, 76px);
+      line-height: 1.1;
+      margin: 15px 0;
+      color: #c92f69;
+    }
+
+    h2 {
+      color: #c92f69;
+      font-size: clamp(27px, 6vw, 40px);
+      line-height: 1.25;
+      margin: 12px 0 20px;
+    }
+
+    p {
+      font-size: 17px;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: 15px auto;
+    }
+
+    .heart {
+      font-size: 44px;
+      animation: heartbeat 1.5s infinite;
+      display: inline-block;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
+
+    .btn {
+      display: inline-block;
+      border: none;
+      border-radius: 30px;
+      background: var(--pink);
+      color: white;
+      padding: 13px 23px;
+      margin: 8px 5px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 6px 18px #f5a7c4;
+      transition: transform .2s, background .2s;
+    }
+
+    .btn:hover {
+      background: var(--dark-pink);
+      transform: translateY(-2px);
+    }
+
+    .paper {
+      max-width: 720px;
+      margin: auto;
+      padding: clamp(22px, 5vw, 42px);
+      background: rgba(255,255,255,.88);
+      border: 1px solid #ffd1e1;
+      border-radius: 24px;
+      box-shadow: 0 12px 35px rgba(171, 61, 105, .09);
+      text-align: left;
+    }
+
+    .paper p {
+      margin: 0 0 17px;
+    }
+
+    .signature {
+      text-align: right;
+      color: var(--dark-pink);
+      font-size: 21px;
+      font-style: italic;
+    }
+
+    /* PHOTO GALLERY */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .photo-card {
+      background: white;
+      padding: 10px;
+      border-radius: 19px;
+      box-shadow: 0 8px 25px rgba(130, 48, 82, .12);
+      overflow: hidden;
+    }
+
+    .photo-card img {
+      display: block;
+      width: 100%;
+      height: 330px;
+      object-fit: contain;
+      object-position: center;
+      background: #fff5f8;
+      border-radius: 12px;
+    }
+
+    .photo-card p {
+      margin: 10px 2px 2px;
+      font-size: 14px;
+      color: #9a4165;
+    }
+
+    .hint {
+      font-size: 14px;
+      opacity: .8;
+    }
+
+    .songbox {
+      max-width: 650px;
+      margin: 25px auto 0;
+      padding: 12px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(130, 48, 82, .1);
+    }
+
+    .songbox iframe {
+      display: block;
+      width: 100%;
+      border: 0;
+      border-radius: 13px;
+    }
+
+    .surprise-box {
+      max-width: 650px;
+      margin: 25px auto;
+      background: white;
+      padding: 28px 20px;
+      border-radius: 22px;
+      box-shadow: 0 8px 25px rgba(130, 48, 82, .1);
+    }
+
+    #surpriseMessage {
+      min-height: 95px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      color: #bd3268;
+      padding: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 15px;
+      background: #ffdfeb;
+      color: #a33360;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 13px 5px;
+      }
+
+      header a {
+        font-size: 12px;
+        margin: 0 5px;
+      }
+
+      section {
+        padding: 42px 13px;
+      }
+
+      .hero {
+        min-height: 76vh;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .photo-card {
+        padding: 9px;
+      }
+
+      .photo-card img {
+        height: auto;
+        max-height: 520px;
+        min-height: 240px;
+        object-fit: contain;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      #surpriseMessage {
+        font-size: 18px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="glow" aria-hidden="true"></div>
-<div class="glow two" aria-hidden="true"></div>
 
-<header class="hero wrap">
-  <div>
-    <div class="eyebrow">A little page, just for us</div>
-    <h1>For my Chika <span aria-hidden="true">♡</span></h1>
-    <p class="intro">Chika, we might not be able to talk properly for a while, but I wanted to make something small for you. Whenever you miss me, you can come here and find a little reminder of us. ❤️</p>
-    <div class="envelope-area">
-      <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open your love letter" aria-expanded="false">
-        <div class="letter-peek">A little note for you, Chika 💌</div>
-        <div class="seal" aria-hidden="true">♥</div>
-      </div>
-    </div>
-    <p class="hint" id="hint">Tap the envelope to open your letter 💗</p>
-    <button class="btn" id="readLetter">Read your letter ↓</button>
-  </div>
-</header>
+  <header>
+    <a href="#home">Home 💗</a>
+    <a href="#letter">My Letter 💌</a>
+    <a href="#photos">Our Photos 📸</a>
+    <a href="#song">Our Song 🎵</a>
+    <a href="#surprise">Surprise 🎁</a>
+  </header>
 
-<main>
-  <section id="letter">
+  <section class="hero" id="home">
     <div class="wrap">
-      <div class="eyebrow">From Damo, with love</div>
-      <h2>A little note for you</h2>
-      <article class="paper">
-        <p>Hey Chika ❤️</p>
-        <p>I know we might not be able to talk properly for the next two months, and honestly, I'm going to miss you a lot.</p>
-        <p>I'm going to miss talking to you, telling you little things about my day, and those small moments that make me happy. 🥹</p>
-        <p>I know we can't always be available for each other, and that's okay. I just hope we don't forget how much we mean to each other.</p>
-        <p>Whenever you miss me, just remember that I'm probably missing you too. Take care of yourself, eat properly, get enough rest, and don't forget to smile, okay? ❤️</p>
-        <p>I can't wait for the day we can talk like we used to again.</p>
-        <p>Miss you, Chika. ❤️🫂</p>
-        <p class="sign">Your Damo 💗</p>
-      </article>
+      <div class="heart">❤️</div>
+      <div class="eyebrow">A little website made with love</div>
+      <h1>For My Chika</h1>
+      <p>
+        No matter how far apart we are, you have a special place in my heart.
+        This little corner of the internet is just for you.
+      </p>
+      <p><strong>From your Damo, with all my love. 💗</strong></p>
+      <a class="btn" href="#letter">Open my heart 💌</a>
     </div>
   </section>
 
-  <section id="memories">
+  <section id="letter">
     <div class="wrap">
-      <div class="eyebrow">Our little moments</div>
-      <h2>Memories with you 📸</h2>
-      <p>Whenever you miss us, come back and look at these memories. 💗</p>
-      <div class="gallery">
-        <figure class="photo">
-          <img src="our-moment-1.jpg" alt="A favourite shared moment" loading="lazy">
-          <figcaption class="caption">My favourite place is beside you 💗</figcaption>
-        </figure>
-        <figure class="photo">
-          <img src="our-moment-2.jpg" alt="A memory together" loading="lazy">
-          <figcaption class="caption">One memory, a thousand feelings</figcaption>
-        </figure>
-        <figure class="photo">
-          <img src="chika-portrait-1.jpg" alt="Chika portrait" loading="lazy">
-          <figcaption class="caption">Your smile is my favourite view ♡</figcaption>
-        </figure>
-        <figure class="photo">
-          <img src="chika-portrait-2.jpg" alt="Another portrait of Chika" loading="lazy">
-          <figcaption class="caption">Beautiful, just as you are</figcaption>
-        </figure>
-        <figure class="photo">
-          <img src="damo-portrait.png" alt="Damo portrait" loading="lazy">
-          <figcaption class="caption">A little piece of me for you ❤️</figcaption>
-        </figure>
-        <figure class="photo">
-          <img src="photo-collage.jpg" alt="A collage of our memories" loading="lazy">
-          <figcaption class="caption">Little moments, so many memories 💗</figcaption>
-        </figure>
+      <div class="eyebrow">Something from my heart</div>
+      <h2>Dear Chika 💌</h2>
+
+      <div class="paper">
+        <p>My Chika, ❤️</p>
+
+        <p>
+          Sometimes I wish I could be next to you instead of just looking
+          at your photos and missing you through a screen.
+        </p>
+
+        <p>
+          Even with the distance between us, you make my days feel more
+          special. A message from you can change my mood, and thinking
+          about you can make me smile without even realizing it.
+        </p>
+
+        <p>
+          I know we cannot be together every moment, and some days the
+          distance feels difficult. But I want us to keep understanding
+          each other, supporting each other, and making more beautiful
+          memories whenever we can.
+        </p>
+
+        <p>
+          I don't need everything to be perfect. I just want something
+          real with you — honest conversations, silly moments, little
+          arguments that we work through, and the happiness of knowing
+          we are there for each other.
+        </p>
+
+        <p>
+          If I could ask for one thing right now, it would be to sit
+          beside you, hold your hand, and tell you all this in person.
+          Until that day comes, let this little page remind you that
+          someone is thinking about you. 🥹❤️
+        </p>
+
+        <p>You are special to me, Chika. Never forget that.</p>
+
+        <p class="signature">
+          Always yours,<br>
+          Damo ❤️
+        </p>
       </div>
-      <p class="hint">Keep these photo files in the same GitHub repository as this page so they appear for both of us.</p>
+    </div>
+  </section>
+
+  <section id="photos">
+    <div class="wrap">
+      <div class="eyebrow">Little moments, big feelings</div>
+      <h2>Our Memories 📸</h2>
+      <p>Every photo holds a memory I want to keep close. ❤️</p>
+
+      <div class="gallery">
+
+        <div class="photo-card">
+          <img
+            src="our-moment-1.png"
+            alt="A special moment together"
+            loading="lazy">
+          <p>A moment I want to remember ❤️</p>
+        </div>
+
+        <div class="photo-card">
+          <img
+            src="our-moment-2.png"
+            alt="A favourite photo together"
+            loading="lazy">
+          <p>My favourite kind of happiness 💗</p>
+        </div>
+
+        <div class="photo-card">
+          <img
+            src="chika-portrait-1.jpg"
+            alt="Chika's portrait"
+            loading="lazy">
+          <p>My beautiful Chika 🌸</p>
+        </div>
+
+        <div class="photo-card">
+          <img
+            src="chika-portrait-2.jpg"
+            alt="Another portrait of Chika"
+            loading="lazy">
+          <p>That smile stays in my heart 🥹</p>
+        </div>
+
+        <div class="photo-card">
+          <img
+            src="damo-portrait.png"
+            alt="Damo's portrait"
+            loading="lazy">
+          <p>Your Damo ❤️</p>
+        </div>
+
+        <div class="photo-card">
+          <img
+            src="photo-collage.jpg"
+            alt="A collage of special memories"
+            loading="lazy">
+          <p>More memories, more reasons to smile 💞</p>
+        </div>
+
+      </div>
+
+      <p class="hint">
+        Some photos may take a moment to load.
+      </p>
     </div>
   </section>
 
   <section id="song">
     <div class="wrap">
-      <div class="eyebrow">A little song for us</div>
-      <h2>Press play 🎶</h2>
+      <div class="eyebrow">A song that reminds me of us</div>
+      <h2>Perfect — Ed Sheeran ❤️</h2>
+      <p>
+        For you, Chika. Imagine we're listening to this together. 💗
+      </p>
+
       <div class="songbox">
-        <p>Upload your chosen song to this repository and name it <code>our-song.mp3</code> for the player below to work.</p>
-        <audio id="sharedAudio" controls preload="metadata">
-          <source src="our-song.mp3" type="audio/mpeg">
-          Your browser does not support audio playback.
-        </audio>
-        <p class="hint">The music file must be uploaded to GitHub to play on both phones.</p>
+        <iframe
+          height="230"
+          src="https://www.youtube-nocookie.com/embed/2Vv-BfVoq4g"
+          title="Ed Sheeran - Perfect official music video"
+          allow="encrypted-media; picture-in-picture; fullscreen"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+        <p class="hint">Press play to listen. This song is for you. ❤️</p>
       </div>
     </div>
   </section>
 
-  <section class="final" id="surpriseSection">
+  <section id="surprise">
     <div class="wrap">
-      <div class="big-heart" aria-hidden="true">💗</div>
-      <div class="eyebrow">Whenever you miss me...</div>
-      <h2>Hey Chika, this is for you</h2>
-      <p class="intro">No big speech. Just a little reminder that you're special to me, even when we're not talking. ♡</p>
-      <button class="btn" id="surprise" aria-expanded="false" aria-controls="surpriseText">Tap when you miss me 💗</button>
-      <article id="surpriseText" class="paper" hidden style="margin-top:24px;text-align:center">
-        <div style="font-size:2.5rem" aria-hidden="true">💌</div>
-        <p id="surpriseMessage">Hey Chika ❤️ I wish I could talk to you right now.</p>
-        <p class="sign">Your Damo 💗</p>
-        <button class="btn secondary" id="anotherMessage" type="button">One more message 🥹</button>
-      </article>
-      <p class="tiny">Made with love by Damo, just for Chika. 💗</p>
+      <div class="eyebrow">A tiny surprise for you</div>
+      <h2>Missing me, Chika? 🥹</h2>
+      <p>Tap the button whenever you need a little reminder of my love.</p>
+
+      <div class="surprise-box">
+        <div id="surpriseMessage" aria-live="polite">
+          I wish I could give you a hug right now. ❤️
+        </div>
+
+        <button class="btn" id="missButton">
+          Tap when you miss me 💗
+        </button>
+
+        <button class="btn" id="moreButton">
+          One more message 🥹
+        </button>
+      </div>
     </div>
   </section>
-</main>
 
-<script>
-const envelope = document.getElementById('envelope');
-const hint = document.getElementById('hint');
+  <footer>
+    Made with love, just for Chika 💗
+    <br>
+    <span>From Damo, with love — always. ❤️</span>
+  </footer>
 
-function hearts(count = 1) {
-  for (let i = 0; i < count; i++) {
-    const heart = document.createElement('span');
-    heart.className = 'floating';
-    heart.setAttribute('aria-hidden', 'true');
-    heart.textContent = ['♡', '♥', '💗', '✧'][Math.floor(Math.random() * 4)];
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.fontSize = (18 + Math.random() * 25) + 'px';
-    heart.style.animationDuration = (3 + Math.random() * 3) + 's';
-    document.body.appendChild(heart);
-    window.setTimeout(() => heart.remove(), 6500);
-  }
-}
+  <script>
+    const messages = [
+      "If I were there right now, I would hug you and not let go so quickly. ❤️",
+      "Even on my busiest days, there's always a little space in my mind for you. 💗",
+      "I miss the thought of being beside you, doing absolutely nothing together. 🥹",
+      "Distance is difficult, but you're worth the patience and effort. ❤️",
+      "If today feels heavy, remember you don't have to pretend to be okay with me.",
+      "I hope something makes you smile today. If not, imagine me trying to make you laugh. 😊",
+      "One day, I hope we can listen to our song together instead of through a screen. 🎵",
+      "You don't need to be perfect for me. Just be yourself, Chika. 💕",
+      "Sending you a long-distance hug. Imagine it's the warmest one ever. 🤗",
+      "I wish I could steal a few minutes with you right now. Just us. ❤️",
+      "Whatever kind of day you're having, I hope you remember how special you are to me.",
+      "Close your eyes for a second and imagine me holding your hand. 💗",
+      "I can't promise every day will be easy, but I want to keep showing up for us.",
+      "You just crossed my mind again. Honestly, that happens a lot. 🥹",
+      "If I could teleport anywhere right now, you already know where I'd go. ❤️"
+    ];
 
-function openEnvelope() {
-  const isOpen = envelope.classList.toggle('open');
-  envelope.setAttribute('aria-expanded', String(isOpen));
-  hint.textContent = isOpen
-    ? 'A little note from me to you 💗'
-    : 'Tap the envelope to open your letter 💗';
-  if (isOpen) {
-    hearts(8);
-    window.setTimeout(() => {
-      document.getElementById('letter').scrollIntoView({behavior:'smooth',block:'start'});
-    }, 450);
-  }
-}
-envelope.addEventListener('click', openEnvelope);
-envelope.addEventListener('keydown', event => {
-  if (event.key === 'Enter' || event.key === ' ') {
-    event.preventDefault();
-    openEnvelope();
-  }
-});
+    let lastMessage = -1;
 
-document.getElementById('readLetter').addEventListener('click', () => {
-  document.getElementById('letter').scrollIntoView({behavior:'smooth',block:'start'});
-});
+    function showMessage() {
+      let next;
 
-const messages = [
-  "Hey Chika ❤️ I wish I could talk to you right now. I have so many little things to tell you.",
-  "Chika, did you eat properly today? 🥹 Please take care of yourself for me, okay? ❤️",
-  "I saw something today and wished I could share it with you. I guess I'm missing our little talks. 💗",
-  "If you're missing me right now, imagine me sitting beside you, listening to everything you want to say. 🫂",
-  "Hey you ❤️ Just a small reminder that you make my days better, even when we're far apart.",
-  "I wonder how your day went. I wish I could ask you about every little detail like usual. 🥹",
-  "Let's take these days one at a time, Chika. We'll have more stories to share when we talk again. ❤️",
-  "If I were there right now, I'd probably smile at you and ask, 'What happened, Chika? Why are you looking at me like that?' 😂💗",
-  "I miss your messages, your little reactions, and all the random things we talk about. It's the little things, you know? ❤️",
-  "Before you sleep, remember to rest well and take care of yourself. Good night, Chika. Wish I could say it to you properly. 🌙💗",
-  "I hope something makes you smile today. And if you need a reason, just remember there's a Damo out here thinking about you. 😊❤️",
-  "If I could send you one thing right now, it would be a big hug. No words needed, just a hug. 🫂💗"
-];
-let lastMessageIndex = -1;
+      do {
+        next = Math.floor(Math.random() * messages.length);
+      } while (messages.length > 1 && next === lastMessage);
 
-function showNewMessage() {
-  let nextIndex;
-  do {
-    nextIndex = Math.floor(Math.random() * messages.length);
-  } while (messages.length > 1 && nextIndex === lastMessageIndex);
+      lastMessage = next;
 
-  lastMessageIndex = nextIndex;
-  document.getElementById('surpriseMessage').textContent = messages[nextIndex];
-  hearts(8);
-}
+      document.getElementById("surpriseMessage").textContent = messages[next];
+    }
 
-document.getElementById('surprise').addEventListener('click', () => {
-  const message = document.getElementById('surpriseText');
-  const button = document.getElementById('surprise');
-  const isOpening = message.hidden;
-  message.hidden = !isOpening;
-  button.setAttribute('aria-expanded', String(isOpening));
+    document.getElementById("missButton").addEventListener("click", showMessage);
+    document.getElementById("moreButton").addEventListener("click", showMessage);
+  </script>
 
-  if (isOpening) {
-    button.textContent = 'A little message for you 💗';
-    showNewMessage();
-    message.scrollIntoView({behavior:'smooth',block:'center'});
-  } else {
-    button.textContent = 'Tap when you miss me 💗';
-  }
-});
-
-document.getElementById('anotherMessage').addEventListener('click', showNewMessage);
-</script>
 </body>
 </html>
